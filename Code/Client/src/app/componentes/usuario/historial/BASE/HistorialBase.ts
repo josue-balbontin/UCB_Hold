@@ -20,7 +20,7 @@ cargarDatos() {
         this.agruparPrestamos(data);
       },
       error: (error) => {
-        alert( error.error.error + ': ' + error.error.mensaje);
+    
       }
 
     }); 

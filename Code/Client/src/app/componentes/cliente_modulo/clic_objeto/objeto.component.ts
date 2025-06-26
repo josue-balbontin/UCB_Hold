@@ -6,6 +6,8 @@ import { GrupoequipoService } from '../../../services/APIS/GrupoEquipo/grupoequi
 import { GrupoEquipo } from '../../../models/grupo_equipo';
 import { CarritoService } from '../../../services/carrito/carrito.service';
 import { ComentariosComponent } from './comentarios/comentarios.component';
+import { FavoritosService } from '../../../services/APIS/Favorito/favoritos.service';
+import { UsuarioService } from '../../../services/usuario/usuario.service';
 
 
 @Component({
@@ -22,8 +24,12 @@ export class ObjetoComponent {
 
    addedToCart = false;
 
-  constructor(private route: ActivatedRoute , private servicio : GrupoequipoService, private carrito : CarritoService) { }
+  constructor(private route: ActivatedRoute , private servicio : GrupoequipoService
+    , private carrito : CarritoService , private favoritoapi : FavoritosService, 
+    public usuario : UsuarioService    
+  ) { }
 
+  favorito = false; 
 
   ngOnInit(): void {
     const routeId = this.route.snapshot.paramMap.get('id');
@@ -49,6 +55,57 @@ export class ObjetoComponent {
         };
       }
     });
+    
+    this.obtenerfavoritos();
+  
+  }
+
+  obtenerfavoritos(){
+    this.favoritoapi.obtenerSiFavorito(this.usuario.obtenercarnet() , Number(this.id)).subscribe({
+      next: (data) => {
+        this.favorito = data;
+      }
+      , error: (error) => {
+   
+        this.favorito = false; 
+      }
+    });
+  }
+
+  agregarfavorito() {
+    this.favoritoapi.agregarFavorito(this.usuario.obtenercarnet(), Number(this.id)).subscribe({
+      next: () => {
+        this.favorito = true;
+      },
+      error: (error) => {
+        alert('Error al agregar el favorito:' + error);
+      }
+    });
+  }
+
+  eliminarfavorito() {
+    this.favoritoapi.eliminarFavorito(this.usuario.obtenercarnet(), Number(this.id)).subscribe({
+      next: () => {
+        this.favorito = false;
+      },
+      error: (error) => {
+        alert('Error al eliminar el favorito:' + error);
+      }
+    });
+  }
+
+  modificarfavorito(){
+    if(this.favorito==true){
+      this.eliminarfavorito();
+    }
+    else if (this.favorito==false){
+      this.agregarfavorito();
+    }
+    else{
+
+    }
+    this.obtenerfavoritos();
+
   }
 
 

@@ -104,3 +104,16 @@
     justify-content: center;
   }
 }
+.iniciar-sesion {
+  background: #fffbe6;
+  color: #b8860b;
+  border: 1px solid #ffe58f;
+  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  font-weight: 600;
+  margin: 1rem 0;
+  font-size: 1.05rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(255, 215, 20, 0.08);
+  letter-spacing: 0.5px;
+}

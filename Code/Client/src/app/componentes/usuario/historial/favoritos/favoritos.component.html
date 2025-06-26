@@ -1,0 +1,32 @@
+<div class="prestamos-container">
+  <div class="header-section">
+    <h1 class="title">Favoritos</h1>
+    <p class="subtitle">Equipos actualmente en Favoritos</p>
+  </div>
+
+  <div class="prestamos-list">
+    @for (item of favoritos ; track item.key) {
+      <div class="prestamo-item">        <!-- Header del préstamo -->
+        <div class="item-header">
+          <div class="usuario-info">
+            <h3 class="usuario-nombre">💻 {{ usuario.usuario.nombre }}</h3>
+            <span class="usuario-carnet">{{ usuario.usuario.carnet }}</span>
+          </div>
+          <div class="equipo-info">
+                    <span class="codigo-imt">Numero de favorito :  {{ item.id_grupo_equipo }}</span>
+           
+          </div>
+        </div>
+
+      </div>
+    }
+
+    @if (favoritos.length === 0) {
+      <div class="empty-state">
+        <div class="empty-icon">📥</div>
+        <h3>No hay favoritos</h3>
+        <p>Actualmente no tienes equipos en favoritos</p>
+      </div>
+    }
+  </div>
+</div>

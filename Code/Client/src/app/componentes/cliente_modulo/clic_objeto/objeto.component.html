@@ -17,7 +17,23 @@
   <div class="seccion-detalles">
     <h2 class="nombre-objeto">
       {{ producto.nombre + " " + producto.modelo + " " + producto.marca }}
+      @if(usuario.vacio()){
+        <div class="iniciar-sesion">inicie sesion para poner favoritos </div>
+      }
+      
+      @else if(favorito==false){
+        <img (click)="modificarfavorito()"src="assets/star-line-grey.png" alt="Favorito" style="width: 20px; height: 20px; margin-right: 6px;" />
+     
+
+      }
+      @else
+      {
+      <img (click)="modificarfavorito()"src="assets/star-solid-yellow.png" alt="Favorito" style="width: 20px; height: 20px; margin-right: 6px;" />
+
+      }
     </h2>
+   
+
     <p class="descripcion-objeto">{{ producto.descripcion }}</p>
     <button
       (click)="addproductocarrito()"

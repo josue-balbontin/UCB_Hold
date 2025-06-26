@@ -7,15 +7,16 @@ import { CanceladoComponent } from './cancelado/cancelado.component';
 import { FinalizadoComponent } from './finalizado/finalizado.component';
 import { PendienteComponent } from './pendiente/pendiente.component';
 import { RechazadoComponent } from './rechazado/rechazado.component';
+import { FavoritosComponent } from './favoritos/favoritos.component';
 
 @Component({
   selector: 'app-historial',
-  imports: [SidebardComponent , ActivoComponent , AprobadoComponent, CanceladoComponent , FinalizadoComponent , PendienteComponent , RechazadoComponent],
+  imports: [SidebardComponent , ActivoComponent , AprobadoComponent, CanceladoComponent , FinalizadoComponent , PendienteComponent , RechazadoComponent , FavoritosComponent],
   templateUrl: './historial.component.html',
   styleUrl: './historial.component.css'
 })
 export class HistorialComponent {
-  contenido : string[] = ["Activo","Aprobado","Pendiente","Rechazado","Finalizado", "Cancelado"];
+  contenido : string[] = ["Activo","Aprobado","Pendiente","Rechazado","Finalizado", "Cancelado" , "Favoritos"];
   item : string = "Activo";
 
   constructor(private usuario : UsuarioService) {  }
